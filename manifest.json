@@ -19,7 +19,8 @@
   "content_scripts": [
     {
       "matches": ["*://news.ycombinator.com/item?*"],
-      "js": ["collapse.js"]
+      "js": ["collapse.js"],
+      "css": ["collapse.css"]
     }
   ]
 
