@@ -11,24 +11,37 @@ function collapse() {
   const depth = thisGif.width
 
   const gifs = document.querySelectorAll('img[src="s.gif"]')
-  let hiding = false
+  let hiding
+  let found = false
   for (let gif of gifs) {
     if (thisGif === gif) {
       const comment = gif.parentElement.nextSibling.nextSibling.lastChild
       comment.classList.toggle('collapsed')
       if (this.text === minusText) {
         this.text = plusText
+        hiding = true
       } else {
         this.text = minusText
+        hiding = false
       }
-      hiding = true
+      found = true
       continue
     }
-    if (hiding) {
+    if (found) {
       if (gif.width <= depth) break
       const thing = gif.parentElement.parentElement.parentElement.parentElement.parentElement
         .parentElement
-      thing.classList.toggle('collapsed')
+      if (!thing.timesCollapsed)
+        thing.timesCollapsed = 0
+      if (hiding) {
+        thing.timesCollapsed++
+        if (thing.timesCollapsed > 0)
+          thing.classList.add('collapsed')
+      } else {
+        thing.timesCollapsed--
+        if (thing.timesCollapsed < 1)
+          thing.classList.remove('collapsed')
+      }
     }
   }
 
