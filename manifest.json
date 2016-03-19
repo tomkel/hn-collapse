@@ -1,0 +1,26 @@
+{
+
+  "manifest_version": 2,
+  "name": "HN Collapse",
+  "version": "1.0",
+
+  "description": "Makes hacker news comments collapsible.",
+  "icons": {
+    "48": "icons/collapse-48.png"
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "hn-collapse@mozilla.org",
+      "strict_min_version": "45.0.0"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://news.ycombinator.com/item?*"],
+      "js": ["collapse.js"]
+    }
+  ]
+
+}
