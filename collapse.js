@@ -1,7 +1,7 @@
 // faster than querySelectorAll
 // gives an HTMLCollection instead of a NodeList
 
-// hyphen, not dash
+// dash, not hyphen
 const minusText = '[–]'
 const plusText = '[+]'
 
@@ -17,6 +17,8 @@ function collapse() {
     if (thisGif === gif) {
       const comment = gif.parentElement.nextSibling.nextSibling.lastChild
       comment.classList.toggle('collapsed')
+      const upvote = gif.parentElement.nextSibling
+      upvote.classList.toggle('collapsed')
       if (this.text === minusText) {
         this.text = plusText
         hiding = true
@@ -51,7 +53,6 @@ function collapse() {
 
 (() => {
   const comheads = document.getElementsByClassName('comhead')
-  // for some reason using const here doesn't work
   for (let comhead of comheads) {
     // there is a span.sitebit.comhead that we don't want
     if (comhead.classList.length === 2) continue
