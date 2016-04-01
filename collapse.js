@@ -18,7 +18,7 @@ function collapse() {
       const comment = gif.parentElement.nextSibling.nextSibling.lastChild
       comment.classList.toggle('collapsed')
       const upvote = gif.parentElement.nextSibling
-      upvote.classList.toggle('collapsed')
+      upvote.classList.toggle('invisible')
       if (this.text === minusText) {
         this.text = plusText
         hiding = true
