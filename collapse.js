@@ -8,11 +8,11 @@ function collapse() {
   this.upvote.classList.toggle('invisible')
 
   let hiding
-  if (this.text === minusText) {
-    this.text = plusText
+  if (this.textContent === minusText) {
+    this.textContent = plusText
     hiding = true
   } else {
-    this.text = minusText
+    this.textContent = minusText
     hiding = false
   }
 
@@ -42,9 +42,6 @@ function collapse() {
       }
     }
   }
-
-  // return false to avoid scrolling to top
-  return false
 }
 
 (() => {
@@ -53,23 +50,23 @@ function collapse() {
   // gives an HTMLCollection instead of a NodeList
   const comheads = commentTree.getElementsByClassName('comhead')
   for (let comhead of comheads) {
-    const a = document.createElement('a')
-    a.text = minusText
-    a.href = '#'
-    a.addEventListener('click', collapse)
-    comhead.insertBefore(a, comhead.firstChild)
+    const span = document.createElement('span')
+    span.textContent = minusText
+    span.className = 'collapsible'
+    span.addEventListener('click', collapse)
+    comhead.insertBefore(span, comhead.firstChild)
 
-    let thing = a
+    let thing = span
     do {
       thing = thing.parentElement
     } while (thing.className !== 'athing')
 
     // setup references
-    a.gif = thing.querySelector('img')
-    a.comment = thing.querySelector('.comment')
-    a.upvote = thing.querySelector('.votearrow').parentElement
+    span.gif = thing.querySelector('img')
+    span.comment = thing.querySelector('.comment')
+    span.upvote = thing.querySelector('.votearrow').parentElement
 
-    a.thing = thing
-    thing.gif = a.gif
+    span.thing = thing
+    thing.gif = span.gif
   }
 })()

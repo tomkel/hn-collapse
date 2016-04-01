@@ -2,6 +2,10 @@
   display: none;
 }
 
+.collapsible {
+  cursor: pointer;
+}
+
 .invisible {
   visibility: hidden;
 }
